@@ -6,7 +6,7 @@ import streamlit as st
 
 # load dataset
 
-df = pd.read_csv("https://raw.githubusercontent.com/muhammadsahrul59/Bike-Sharing-Dashboard/main/dashboard/all_dailysharing_df.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/muhammadsahrul59/Bike-Sharing-Dashboard/main/dashboard/all_dailysharing.csv")
 df['dteday'] = pd.to_datetime(df['dteday'])
 
 
