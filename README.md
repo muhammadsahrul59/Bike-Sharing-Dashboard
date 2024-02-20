@@ -34,7 +34,7 @@ streamlit run dashboard.py
 ```
 or
 ```
-python -m streamlit run dashboard2.py
+python -m streamlit run dashboard.py
 ```
 ## Run the notebook only on Google Colab
 ```
