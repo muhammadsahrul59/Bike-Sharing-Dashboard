@@ -9,7 +9,7 @@ Streamlit Cloud: <a href='https://bike-sharing-dashboard-2.streamlit.app/' targe
 
 ## Description
 
-This project is part of the bike sharing data analysis project to analyze the <a href='https://drive.google.com/file/d/1RaBmV6Q6FYWU4HWZs80Suqd7KQC34diQ' target='_blank' title='Bike-sharing-dataset.zip'>Bike Sharing Dataset</a>. The results of the analysis are then made into the form of data visualization into an interactive dashboard.
+This project is part of the bike sharing data analysis project to analyze the <a href='https://drive.google.com/drive/folders/1Jfqu10ea7MCZK6pImhz1jfipNZ94jTeS?usp=sharing' target='_blank' title='Bike-sharing-dataset.zip'>Bike Sharing Dataset</a>. The results of the analysis are then made into the form of data visualization into an interactive dashboard.
 
 ## Directory
 
@@ -21,37 +21,21 @@ This project is part of the bike sharing data analysis project to analyze the <a
 - `notebook.ipynb`: interactive jupyter notebook files to analyze data
 - `requirements.txt`: file that stores information about the libraries used in this project
 
-## Installation
+## Setup environment
+```
+conda create --name main-ds python=3.9
+conda activate main-ds
+pip install numpy pandas scipy matplotlib seaborn jupyter streamlit babel
+```
 
-The steps to create your virtual environment from this project is as follows:
-
-1. Clone this Repository
-   ```bash
-   git clone https://github.com/aNdr3W03/Bike-Sharing-Dashboard.git
-   ```
-
-2. Create Python Virtual Environment
-   ```bash
-   virtualenv venv
-   ```
-
-2. Activate the Environment
-   ```bash
-   venv\Scripts\activate
-   ```
-
-4. Install All the Requirements Inside "requirements.txt"
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. Run the Streamlit Dashboard
-   ```bash
-   streamlit run app.py
-   ```
-
-6. Stop the application program by `ctrl + c`.
-
+## Run steamlit app
+```
+streamlit run dashboard.py
+```
+or
+```
+python -m streamlit run dashboard2.py
+```
 ## Run the notebook only on Google Colab
 ```
 - Download the file above
