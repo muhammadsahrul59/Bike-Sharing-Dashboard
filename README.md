@@ -1,10 +1,10 @@
 # 🚲Bike Sharing Dashboard ✨
 
-Streamlit Cloud: <a href='https://bike-sharing-dashboard-2.streamlit.app/' target='_blank' title='Bike Sharing Dashboard | Streamlit'>Bike Sharing Dashboard</a>
+Streamlit Cloud: <a href='https://bike-sharing-dashboard-bfdvxrwt33pf2r4qt89jlt.streamlit.app/' target='_blank' title='Bike Sharing Dashboard | Streamlit'>Bike Sharing Dashboard</a>
 
 ## Preview
 
-![demo_gif](https://github.com/aNdr3W03/Bike-Sharing-Dashboard/assets/101655285/ae70534b-4404-4588-bbca-4864cb37d709)
+![demo_gif](https://github.com/muhammadsahrul59/Bike-Sharing-Dashboard/assets/101655285/2b0ce4fd-e043-4ada-bb96-96ac6ead232e)
 
 
 ## Description
