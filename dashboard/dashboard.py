@@ -100,6 +100,31 @@ def create_hourly_users_df(df):
     
     return hourly_users_df
 
+def create_season_temperature_df(df):
+    season_temperature_df = df.groupby(['season', 'temp']).agg({
+        'cnt': 'sum'
+    }).reset_index()
+    return season_temperature_df
+
+def create_weather_rides_df(df):
+    weather_rides_df = df.groupby('weathersit').agg({
+        'casual': 'sum',
+        'registered': 'sum'
+    }).reset_index()
+
+    weather_rides_df = pd.melt(weather_rides_df, id_vars=['weathersit'], 
+                               value_vars=['casual', 'registered'], 
+                               var_name='type_of_rides', 
+                               value_name='count_rides')
+
+    weather_rides_df['weathersit'] = weather_rides_df['weathersit'].replace({
+        1: 'Clear',
+        2: 'Mist',
+        3: 'Light Rain/Snow',
+        4: 'Heavy Rain/Snow'
+    })
+    return weather_rides_df
+
 # make filter components
 
 min_date = df["dteday"].min()
@@ -160,6 +185,8 @@ monthly_users_df = create_monthly_users_df(main_df)
 weekday_users_df = create_weekday_users_df(main_df)
 seasonly_users_df = create_seasonly_users_df(main_df)
 hourly_users_df = create_hourly_users_df(main_df)
+season_temperature_df = create_season_temperature_df(main_df)
+weather_rides_df = create_weather_rides_df(main_df)
 
 # ----- MAINPAGE -----
 st.markdown("<h1 style='text-align: center;'>🚲 Bike-Sharing Dashboard 💫</h1>", unsafe_allow_html=True)
@@ -188,40 +215,60 @@ fig = px.line(monthly_users_df,
 
 st.plotly_chart(fig, use_container_width=True)
 
-fig1 = px.bar(seasonly_users_df,
+fig2 = px.bar(seasonly_users_df,
               x='season',
               y=['count_rides'],
               color='type_of_rides',
-              title='Count of bikeshare rides by season').update_layout(xaxis_title='', yaxis_title='Total Rides')
+              title='Count of Bikeshare Rides by Season').update_layout(xaxis_title='', yaxis_title='Total Rides')
 
-fig2 = px.bar(weekday_users_df,
+fig3 = px.bar(weekday_users_df,
               x='weekday',
               y=['count_rides'],
               color='type_of_rides',
               barmode='group',
-              title='Count of bikeshare rides by weekday').update_layout(xaxis_title='', yaxis_title='Total Rides')
+              title='Count of Bikeshare Rides by Weekday').update_layout(xaxis_title='', yaxis_title='Total Rides')
 
 
 left_column, right_column = st.columns(2)
-left_column.plotly_chart(fig1, use_container_width=True)
-right_column.plotly_chart(fig2, use_container_width=True)
+left_column.plotly_chart(fig2, use_container_width=True)
+right_column.plotly_chart(fig3, use_container_width=True)
 
-fig = px.line(hourly_users_df,
+fig4 = px.line(hourly_users_df,
               x="hr",
               y=['casual_rides', 'registered_rides'],
               markers=True,
-              title='Count of bikeshare rides by hour of day').update_layout(xaxis_title='', yaxis_title='Total Rides')
+              title='Count of Bikeshare Rides by Hour').update_layout(xaxis_title='', yaxis_title='Total Rides')
 
-st.plotly_chart(fig, use_container_width=True)
-# Histogram of daily total rides
-fig3 = px.histogram(main_df,
-                    x='cnt',
-                    nbins=30,
-                    title='Distribution of Daily Total Rides',
-                    labels={'cnt': 'Total Rides', 'count': 'Number of Days'},
-                    )
+st.plotly_chart(fig4, use_container_width=True)
 
-st.plotly_chart(fig3, use_container_width=True)
+# Plotting scatter plots for each season
+
+fig5 = px.scatter(season_temperature_df, x='temp', y='cnt', color='season', 
+                                    title='Clusters of Bikeshare Rides Count by Temperature in Different Seasons',
+                                    labels={'cnt': 'Total Rides', 'temp': 'Temperature (Celsius)'},
+                                    facet_col='season', facet_col_wrap=2, 
+                                    color_discrete_map={'Winter': 'blue', 'Spring': 'green', 'Summer': 'orange', 'Fall': 'red'},
+                                    hover_name='temp', hover_data={'temp': False})
+
+fig5.update_traces(showlegend=True)
+
+st.plotly_chart(fig5, use_container_width=True)
+
+# Grouping by weather and aggregating total casual and registered rides
+
+fig6 = px.bar(weather_rides_df, x='weathersit', y='count_rides', 
+              color='type_of_rides', barmode='group', 
+              title='Count of Bikeshare Rides by Weather Condition',
+              labels={'count_rides': 'Total Rides', 'weathersit': 'Weather Condition'},
+              color_discrete_map={'casual': 'orange', 'registered': 'blue'})
+
+# Adding legend
+fig6.update_layout(legend_title_text='Type of Rides')
+
+# Displaying the plot
+st.plotly_chart(fig6, use_container_width=True)
+
+
 # Calculate total casual and registered rides
 total_casual_rides = main_df['casual'].sum()
 total_registered_rides = main_df['registered'].sum()
@@ -235,8 +282,9 @@ pie_data = pd.DataFrame({
 fig_pie = px.pie(pie_data,
                  values='Total Rides',
                  names='Type of Rides', 
-                 title='Distribution of Rides (Casual vs Registered)'
+                 title='Distribution of Rides'
                  )
+
 st.plotly_chart(fig_pie, use_container_width=True)
 
 st.markdown("<p style='text-align: right; font-size: small;'>Copyright (c), created by Muhammad Sahrul</p>", unsafe_allow_html=True)
