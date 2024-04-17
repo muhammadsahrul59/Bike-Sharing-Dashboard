@@ -4,12 +4,11 @@ Streamlit Cloud: <a href='https://bike-sharing-dashboard-project-sahrul.streamli
 
 ## Preview
 
-![demo_gif](https://github.com/muhammadsahrul59/Bike-Sharing-Dashboard/assets/101655285/2b0ce4fd-e043-4ada-bb96-96ac6ead232e)
-
+![demo_dashboard](https://github.com/muhammadsahrul59/Bike-Sharing-Dashboard/assets/101655285/7103d045-cbe8-4071-820c-7213e82234d0)
 
 ## Description
 
-This project is part of the bike sharing data analysis project to analyze the <a href='https://drive.google.com/drive/folders/1Jfqu10ea7MCZK6pImhz1jfipNZ94jTeS?usp=sharing' target='_blank' title='Bike-sharing-dataset.zip'>Bike Sharing Dataset</a>. The results of the analysis are then made into the form of data visualization into an interactive dashboard.
+This project is part of the bike sharing data analysis project to analyze the <a href='https://www.kaggle.com/datasets/lakshmi25npathi/bike-sharing-dataset' target='_blank' title='Bike-sharing-dataset.zip'>Bike Sharing Dataset</a>. The results of the analysis are then made into the form of data visualization into an interactive dashboard.
 
 ## Directory
 
