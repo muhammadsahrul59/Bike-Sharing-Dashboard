@@ -1,6 +1,6 @@
 # 🚲Bike Sharing Dashboard ✨
 
-Streamlit Cloud: <a href='https://bike-sharing-dashboard-bfdvxrwt33pf2r4qt89jlt.streamlit.app/' target='_blank' title='Bike Sharing Dashboard | Streamlit'>Bike Sharing Dashboard</a>
+Streamlit Cloud: <a href='https://bike-sharing-dashboard-project-sahrul.streamlit.app/' target='_blank' title='Bike Sharing Dashboard | Streamlit'>Bike Sharing Dashboard</a>
 
 ## Preview
 
