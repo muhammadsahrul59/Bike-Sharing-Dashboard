@@ -279,13 +279,13 @@ pie_data = pd.DataFrame({
     'Total Rides': [total_casual_rides, total_registered_rides]
 })
 
-fig_pie = px.pie(pie_data,
+fig7 = px.pie(pie_data,
                  values='Total Rides',
                  names='Type of Rides', 
                  title='Distribution of Rides'
                  )
 
-st.plotly_chart(fig_pie, use_container_width=True)
+st.plotly_chart(fig7, use_container_width=True)
 
 st.markdown("<p style='text-align: right; font-size: small;'>Copyright (c), created by Muhammad Sahrul</p>", unsafe_allow_html=True)
 
