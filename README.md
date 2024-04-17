@@ -14,7 +14,7 @@ This project is part of the bike sharing data analysis project to analyze the <a
 ## Directory
 
 - `/image`: stores image and video assets used in this project
-- `/dashboard`: contains the file `func.py` which stores the functions needed by the dashboard
+- `/dashboard`: contains the file `cleaned_bikeshare` which is for the dashboard, and file 'dashboard.py' to run the dashboard
 - `/data`: stores data used in the data analysis project
 - `README.md`: file that provides information about this GitHub project
 - `dashboard.py`: main file to run the dashboard
@@ -28,7 +28,7 @@ conda activate main-ds
 pip install numpy pandas plotly scipy matplotlib seaborn streamlit
 ```
 
-## Run steamlit app
+## Run streamlit app
 ```
 streamlit run dashboard.py
 ```
