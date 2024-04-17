@@ -17,7 +17,7 @@ This project is part of the bike sharing data analysis project to analyze the <a
 - `/dashboard`: contains the file `func.py` which stores the functions needed by the dashboard
 - `/data`: stores data used in the data analysis project
 - `README.md`: file that provides information about this GitHub project
-- `app.py`: main file to run the dashboard
+- `dashboard.py`: main file to run the dashboard
 - `notebook.ipynb`: interactive jupyter notebook files to analyze data
 - `requirements.txt`: file that stores information about the libraries used in this project
 
