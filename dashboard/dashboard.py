@@ -6,14 +6,13 @@ import streamlit as st
 
 # load dataset
 
-df = pd.read_csv("https://raw.githubusercontent.com/muhammadsahrul59/Bike-Sharing-Dashboard/main/dashboard/all_dailysharing.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/muhammadsahrul59/Bike-Sharing-Dashboard/main/dashboard/cleaned_bikeshare.csv")
 df['dteday'] = pd.to_datetime(df['dteday'])
 
 
 st.set_page_config(page_title="Bike-sharing Dashboard",
                    page_icon="🚲",
                    layout="wide")
-
 
 # create helper functions
 
@@ -119,8 +118,15 @@ with st.sidebar:
         value=[min_date, max_date]
     )
 
-st.sidebar.header("Visit my Profile:")
+st.markdown("""
+    <style>
+        .sidebar .markdown-text-container span {
+            color: white !important;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
+st.sidebar.header("Visit my Profile:")
 st.sidebar.markdown("Muhammad Sahrul")
 
 col1, col2, col3 = st.sidebar.columns(3)
@@ -131,6 +137,15 @@ with col2:
     st.markdown("[![Github](https://raw.github.com/muhammadsahrul59/Bike-Sharing-Dashboard/main/image/GitHub_Invertocat_Logo.png)](https://github.com/muhammadsahrul59/)")
 with col3:
     st.markdown("[![Instagram](https://raw.github.com/muhammadsahrul59/Bike-Sharing-Dashboard/main/image/Instagram_logo_2022.png)](https://www.instagram.com/sahrullss/)")
+
+
+st.markdown("""
+<style>
+    [data-testid=stSidebar] {
+        background-color: #90C7AC;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # hubungkan filter dengan main_df
 
@@ -147,7 +162,7 @@ seasonly_users_df = create_seasonly_users_df(main_df)
 hourly_users_df = create_hourly_users_df(main_df)
 
 # ----- MAINPAGE -----
-st.title("🚲 Bike-Sharing Dashboard :sparkles:")
+st.markdown("<h1 style='text-align: center;'>🚲 Bike-Sharing Dashboard 💫</h1>", unsafe_allow_html=True)
 st.markdown("##")
 
 col1, col2, col3 = st.columns(3)
@@ -168,7 +183,6 @@ st.markdown("---")
 fig = px.line(monthly_users_df,
               x='yearmonth',
               y=['casual_rides', 'registered_rides', 'total_rides'],
-              color_discrete_sequence=px.colors.qualitative.Pastel,
               markers=True,
               title="Monthly Count of Bikeshare Rides").update_layout(xaxis_title='', yaxis_title='Total Rides')
 
@@ -178,7 +192,6 @@ fig1 = px.bar(seasonly_users_df,
               x='season',
               y=['count_rides'],
               color='type_of_rides',
-              color_discrete_sequence=px.colors.qualitative.Pastel,
               title='Count of bikeshare rides by season').update_layout(xaxis_title='', yaxis_title='Total Rides')
 
 fig2 = px.bar(weekday_users_df,
@@ -186,7 +199,6 @@ fig2 = px.bar(weekday_users_df,
               y=['count_rides'],
               color='type_of_rides',
               barmode='group',
-              color_discrete_sequence=px.colors.qualitative.Pastel,
               title='Count of bikeshare rides by weekday').update_layout(xaxis_title='', yaxis_title='Total Rides')
 
 
@@ -195,9 +207,8 @@ left_column.plotly_chart(fig1, use_container_width=True)
 right_column.plotly_chart(fig2, use_container_width=True)
 
 fig = px.line(hourly_users_df,
-              x='hr',
+              x="hr",
               y=['casual_rides', 'registered_rides'],
-              color_discrete_sequence=px.colors.qualitative.Pastel,
               markers=True,
               title='Count of bikeshare rides by hour of day').update_layout(xaxis_title='', yaxis_title='Total Rides')
 
@@ -208,7 +219,7 @@ fig3 = px.histogram(main_df,
                     nbins=30,
                     title='Distribution of Daily Total Rides',
                     labels={'cnt': 'Total Rides', 'count': 'Number of Days'},
-                    color_discrete_sequence=px.colors.qualitative.Pastel)
+                    )
 
 st.plotly_chart(fig3, use_container_width=True)
 # Calculate total casual and registered rides
@@ -224,11 +235,11 @@ pie_data = pd.DataFrame({
 fig_pie = px.pie(pie_data,
                  values='Total Rides',
                  names='Type of Rides', 
-                 title='Distribution of Rides (Casual vs Registered)',
-                 color_discrete_sequence=px.colors.qualitative.Pastel)
+                 title='Distribution of Rides (Casual vs Registered)'
+                 )
 st.plotly_chart(fig_pie, use_container_width=True)
 
-st.caption('Copyright (c), created by Muhammad Sahrul')
+st.markdown("<p style='text-align: right; font-size: small;'>Copyright (c), created by Muhammad Sahrul</p>", unsafe_allow_html=True)
 
 # HIDE STREAMLIT STYLE
 hide_st_style = """
